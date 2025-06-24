@@ -1,0 +1,21 @@
+---
+- name : Configure Interface Description on ISP-R1
+  hosts: Routers
+  gather_facts: false
+  connection: local
+
+
+  vars:
+    cli:
+      username: localadmin
+      password: Welcome23
+      timeout: 60
+
+
+  tasks:
+    - name: Set description on Ethernet0/1
+      ios_config:
+        provider: "{{ cli }}"
+        lines:
+          - description ISP-R1 MGMT Interface
+        parents: interface Ethernet0/1
