@@ -1,0 +1,8 @@
+# Ignore Terraform state, backup files, logs, and providers
+.terraform/
+*.tfstate
+*.tfstate.*
+*.backup
+*.log
+*.tfvars
+*.exe
