@@ -1,0 +1,9 @@
+set network interface tunnel units tunnel.1 ip 1.1.1.1
+set network interface tunnel units tunnel.1 mtu 1427
+set network interface tunnel units tunnel.1 interface-management-profile PING_ONLY
+set network interface tunnel units tunnel.1 zone CORP_TUNNEL
+set network interface tunnel units tunnel.1 virtual-router default
+set network interface tunnel units tunnel.1 comment "BOS TO PHL"
+set network virtual-router default protocol bgp peer-group BOS-PEER-GROUP import next-hop original
+set network virtual-router default protocol bgp peer-group BOS-PEER-GROUP export next-hop use-self
+set network virtual-router default protocol bgp peer-group BOS-PEER-GROUP soft-reset-with-stored-info enable yes

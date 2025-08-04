@@ -1,0 +1,12 @@
+set network interface tunnel units tunnel.1 ip 
+set network interface tunnel units tunnel.1 mtu 1427
+set network interface tunnel units tunnel.1 interface-management-profile 
+set network interface tunnel units tunnel.1 zone 
+set network interface tunnel units tunnel.1 virtual-router 
+set network virtual-router  protocol bgp peer-group  import next-hop original
+set network virtual-router  protocol bgp peer-group  export next-hop resolve
+set network virtual-router  protocol bgp peer-group  soft-reset-with-stored-info enable yes
+set network virtual-router  protocol bgp peer-group  peer  peer-as 
+set network virtual-router  protocol bgp peer-group  peer  local-address ip 
+set network virtual-router  protocol bgp peer-group  peer  local-address interface tunnel.1
+set network virtual-router  protocol bgp peer-group  peer  peer-address ip 
