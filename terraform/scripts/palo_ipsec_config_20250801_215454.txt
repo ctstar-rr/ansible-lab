@@ -1,0 +1,34 @@
+set network interface tunnel units tunnel.1 ip 1.1.1.1
+set network interface tunnel units tunnel.1 mtu 1427
+
+set network ike crypto-profile ike-crypto-default dh-group group5
+set network ike crypto-profile ike-crypto-default authentication sha sha256
+set network ike crypto-profile ike-crypto-default encryption aes-256-cbc
+set network ike crypto-profile ike-crypto-default lifetime seconds 28800
+
+set network tunnel ipsec-crypto-profile test-ipsec-crypto-profile encryption aes-256-cbc
+set network tunnel ipsec-crypto-profile test-ipsec-crypto-profile authentication sha256
+set network tunnel ipsec-crypto-profile test-ipsec-crypto-profile dh-group group14
+set network tunnel ipsec-crypto-profile test-ipsec-crypto-profile lifetime seconds 28800
+
+set network ike gateway ike-gateway-default protocol 2
+set network ike gateway ike-gateway-default interface 2
+set network ike gateway ike-gateway-default local-address ip 2
+set network ike gateway ike-gateway-default peer-address ip 2
+set network ike gateway ike-gateway-default authentication pre-shared-key key 2
+set network ike gateway ike-gateway-default nat-traversal enable true
+set network ike gateway ike-gateway-default ike-crypto-profile ike-crypto-default
+set network ike gateway ike-gateway-default dpd enable true
+
+set network ipsec tunnel 2 auto-key ike-gateway ike-gateway-default
+set network ipsec tunnel 2 auto-key ipsec-crypto-profile test-ipsec-crypto-profile
+set network ipsec tunnel 2 tunnel-interface tunnel.1
+
+set network virtual-router default protocol bgp router-id 
+set network virtual-router default protocol bgp enable yes
+set network virtual-router default protocol bgp local-as 
+set network virtual-router default protocol bgp peer-group  enable yes
+set network virtual-router default protocol bgp peer-group  peer  peer-as 
+set network virtual-router default protocol bgp peer-group  peer  enable yes
+set network virtual-router default protocol bgp import rule 
+set network virtual-router default protocol bgp export rule 
